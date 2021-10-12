@@ -1,0 +1,12 @@
+<p>物件名：<%= @apartment.name %></p>
+
+<p>賃料：<%= @apartment.rent %></p>
+
+<p>住所：<%= @apartment.address %></p>
+
+<p>築年数：<%= @apartment.age %></p>
+
+<p>備考：<%= @apartment.remarks %></p>
+
+<%= link_to "編集", edit_apartment_path(@apartment.id) %>
+<%= link_to "戻る", apartments_path %>
