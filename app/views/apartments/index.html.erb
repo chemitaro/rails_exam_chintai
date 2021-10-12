@@ -11,13 +11,15 @@
   <% @apartments.each do |apt| %>
   <tr>
     <td> <%= apt.name %> </td>
-    <td> <%= apt.rent %>円 </td>
+    <td> <%= apt.rent.to_s(:delimited) %>円 </td>
     <td> <%= apt.address %> </td>
     <td> <%= apt.age %>年 </td>
     <td> <%= apt.remarks %> </td>
     <td> <%= link_to "詳細", apartment_path(apt.id) %> </td>
     <td> <%= link_to "編集", edit_apartment_path(apt.id) %> </td>
-    <td> <%=  %>削除</td>
+    <td> <%= link_to "削除", apartment_path(apt.id), method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
   </tr>
   <% end %>
 </table>
+
+<%= link_to "物件を登録する", new_apartment_path %>

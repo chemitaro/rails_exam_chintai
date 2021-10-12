@@ -27,6 +27,12 @@ class ApartmentsController < ApplicationController
       render :edit
     end
   end
+  def destroy
+    @apartment = Apartment.find(params[:id])
+    @apartment.destroy
+    redirect_to apartments_path
+  end
+  
   
   private
   def apartment_params
