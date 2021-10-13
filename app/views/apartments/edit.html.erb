@@ -1,22 +1,44 @@
 <h1>物件編集</h1>
 <%= form_with(model: @apartment, local: true) do |f| %>
 <div>
-  <%= f.label :name, "物件名" %>
+  <%= f.label :name, "物件名" %> <br>
   <%= f.text_field :name %>
 </div>
-  <%= f.label :rent, "賃料" %>
-  <%= f.text_field :rent %>
+  <%= f.label :rent, "賃料" %> <br>
+  <%= f.text_field :rent %> <span>円</span>
 <div>
-  <%= f.label :address, "住所" %>
+  <%= f.label :address, "住所" %> <br>
   <%= f.text_field :address %>
 </div>
 <div>
-  <%= f.label :age, "築年数" %>
-  <%= f.text_field :age %>
+  <%= f.label :age, "築年数" %> <br>
+  <%= f.text_field :age %> <span>年</span>
 </div>
 <div>
-  <%= f.label :remarks, "備考" %>
+  <%= f.label :remarks, "備考" %> <br>
   <%= f.text_area :remarks %>
 </div>
+<div class="border_line"></div>
+<% c = 1 %>
+<%= f.fields_for :accsesses do |acs| %>
+  <div class = "accsess">
+    <h4> <%= "最寄り駅#{c}" %></h4>
+    <div>
+      <%= acs.label :line_name, "路線名" %> <br>
+      <%= acs.text_field :line_name %>
+    </div>
+    <div>
+      <%= acs.label :station_name, "駅名" %> <br>
+      <%= acs.text_field :station_name %>
+    </div>
+    <div>
+      <%= acs.label :distance, "徒歩分数" %> <br>
+      <%= acs.text_field :distance %> <span>分</span>
+    </div>
+  </div>
+  <% c += 1 %>
+<% end %>
 <%= f.submit "編集" %>
 <% end %>
+<%= link_to "詳細", apartment_path(@apartment.id) %>
+<%= link_to "戻る", apartments_path %>

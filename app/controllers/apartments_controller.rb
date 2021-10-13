@@ -4,6 +4,7 @@ class ApartmentsController < ApplicationController
   end
   def new
     @apartment = Apartment.new
+    2.times { @apartment.accsesses.build }
   end
   def create
     @apartment = Apartment.new(apartment_params)
@@ -15,6 +16,7 @@ class ApartmentsController < ApplicationController
   end
   def show
     @apartment = Apartment.find(params[:id])
+    @accsess = Accsess.where(apartment_id: @apartment.id)
   end
   def edit
     @apartment = Apartment.find(params[:id])
@@ -32,10 +34,8 @@ class ApartmentsController < ApplicationController
     @apartment.destroy
     redirect_to apartments_path
   end
-  
-  
   private
   def apartment_params
-    params.require(:apartment).permit(:name, :rent, :address, :age, :remarks)
+    params.require(:apartment).permit(:name, :rent, :address, :age, :remarks, accsesses_attributes: [:line_name, :station_name, :distance, :id, :_destroy])
   end
 end
