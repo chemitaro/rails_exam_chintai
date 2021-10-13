@@ -20,7 +20,11 @@ class ApartmentsController < ApplicationController
   end
   def edit
     @apartment = Apartment.find(params[:id])
-    @apartment.accsesses.build
+    empty_accsess = true
+    @apartment.accsesses.each do |acs|
+      empty_accsess = false if ( acs.line_name.blank? && acs.station_name.blank? && acs.distance.blank? )
+    end
+    @apartment.accsesses.build if empty_accsess
   end
   def update
     @apartment = Apartment.find(params[:id])
