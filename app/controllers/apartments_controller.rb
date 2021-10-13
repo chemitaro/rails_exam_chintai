@@ -20,6 +20,7 @@ class ApartmentsController < ApplicationController
   end
   def edit
     @apartment = Apartment.find(params[:id])
+    @apartment.accsesses.build
   end
   def update
     @apartment = Apartment.find(params[:id])

@@ -13,16 +13,18 @@
 <% c= nil %>
 
 <% @accsess.each do |acs| %>
-  <h4> <%= "最寄り駅#{c ||= 1}" %> </h4>
-  <div class = "show_content">
-    <p>路線名: <%= acs.line_name %></p>
+  <% if ( acs.line_name.present? || acs.station_name.present? || acs.distance.present? ) %>
+    <h4> <%= "最寄り駅#{c ||= 1}" %> </h4>
+    <div class = "show_content">
+      <p>路線名: <%= acs.line_name %></p>
 
-    <p>駅名: <%= acs.station_name %></p>
+      <p>駅名: <%= acs.station_name %></p>
 
-    <p>徒歩: <%= acs.distance %>分</p>
+      <p>徒歩: <%= acs.distance %>分</p>
 
-  </div>
-  <% c += 1 %>
+    </div>
+  <% end %>
+    <% c += 1 %>
 <% end %>
 
 <%= link_to "編集", edit_apartment_path(@apartment.id) %>
